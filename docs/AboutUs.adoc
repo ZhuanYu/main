@@ -66,6 +66,7 @@ Role: Developer +
 Responsibilities:
 
 * Filter
+* Calculate
 * Commands
 * Documentation
 

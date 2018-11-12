@@ -2,11 +2,15 @@ package seedu.parking.model.carpark;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.parking.commons.core.EventsCenter;
+import seedu.parking.commons.core.Messages;
+import seedu.parking.commons.events.ui.NewResultAvailableEvent;
 import seedu.parking.commons.util.StringUtil;
 import seedu.parking.logic.parser.CarparkTypeParameter;
 import seedu.parking.logic.parser.FreeParkingParameter;
@@ -40,8 +44,10 @@ public class CarparkFilteringPredicate implements Predicate<Carpark> {
     private boolean checkFreeParking(String day, Date inputStart, Date inputEnd, String timePeriod) {
         boolean hasFreeParkingTiming = !timePeriod.equals("NO");
         boolean hasDay = false;
-        boolean afterStart = false;
-        boolean beforeEnd = false;
+        boolean inputStartBeforeStart = false;
+        boolean inputStartAfterEnd = false;
+        boolean inputEndAfterEnd = false;
+        boolean inputEndBeforeStart = false;
 
         try {
             if (hasFreeParkingTiming) {
@@ -60,14 +66,25 @@ public class CarparkFilteringPredicate implements Predicate<Carpark> {
                 Date start = dateFormat1.parse(startAndEndTime[0]);
                 Date end = dateFormat2.parse(startAndEndTime[1]);
 
-                afterStart = inputStart.after(start) || inputStart.equals(start);
-                beforeEnd = inputEnd.before(end) || inputEnd.equals(end);
+                // Check if the input end time is referring to the next day
+                if (!inputStart.before(inputEnd)) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(inputEnd);
+                    cal.add(Calendar.HOUR_OF_DAY, 24);
+                    inputEnd = cal.getTime();
+                }
+
+                inputStartBeforeStart = inputStart.before(start);
+                inputStartAfterEnd = inputStart.after(end);
+                inputEndAfterEnd = inputEnd.after(end);
+                inputEndBeforeStart = inputEnd.before(start);
             }
         } catch (ParseException e) {
-            System.out.println("parse exception"); // how to get rid of this?
+            EventsCenter.getInstance().post(new NewResultAvailableEvent(Messages.MESSAGE_ERROR_PARSING_CARPARK_INFO));
         }
 
-        return hasFreeParkingTiming && hasDay && afterStart && beforeEnd;
+        return hasFreeParkingTiming && hasDay
+                && !((inputStartBeforeStart && inputEndBeforeStart) || (inputStartAfterEnd && inputEndAfterEnd));
     }
 
     /**

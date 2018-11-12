@@ -367,12 +367,12 @@ Filters the list of car parks returned by `FindCommand` by the following flags: 
 
 `FilterCommand` can take in any number of flags, in any order.
 
-[width="95%"]
-[cols="3,1,5"]
+[[filterformat]]
+[cols="^.^3,^.^1,^.^4", width="95%", options="header"]
 |===
-|Format| Abbreviation | Example(s)
-|`filter [flag&parameter(s)] [flag&parameter(s)] ...`| `fil`,`filt`,`filte` | `filter f/ SUN 7.30AM 5.30PM ct/ SURFACE` +
-`fit a/ ps/ COUPON`
+| Format | Abbreviation | Example(s)
+| filter FLAG&PARAMETER(S) [FLAG&PARAMETER(S)] ... | fil, filt, filte | filter f/ sun 7.30am 5.30pm ct/ surface +
+fil a/ ps/ coupon
 |===
 
 //[NOTE]
@@ -380,18 +380,18 @@ Filters the list of car parks returned by `FindCommand` by the following flags: 
 
 List of valid flags:
 
-[width="95%"]
-[cols="2,1,4,3,4"]
+[[filterflags]]
+[cols="2,1,4,4,4", width="95%", options="header"]
 |===
 | Criteria | Flag| Parameter Structure | Valid Parameters | Example(s)
-| Car park has free parking |`f/`| `DAY START_TIME END_TIME` | `DAY`: `MON` - `SUN` +
-`START_TIME: e.g. 7.30AM` +
-`END_TIME: e.g. 9.30PM` | `filter f/ sun 9.00am 5.30pm`
-| Car park has night parking |`n/`| - | - |`filter n/`
-| Type of car park |`ct/`| `CAR_PARK_TYPE`| `"SURFACE", "MULTISTOREY", "BASEMENT", "MECHANISED", "COVERED"`| `filter ct/ covered`
-| Car park has available parking slot |`a/`| - | - |`filter a/`
-| Car park has short-term parking | `s/`| - | - |`filter s/`
-| Type of parking system | `ps/` |`PARKING_SYSTEM_TYPE`|`"COUPON", "ELECTRONIC"` | `filter ps/ coupon`
+| Car park has free parking | f/| DAY START_TIME END_TIME | DAY: e.g. sun +
+START_TIME: e.g. 7.30AM +
+END_TIME: e.g. 9.30PM | filter f/ sun 9.00am 5.30pm
+| Car park has night parking | n/ | - | - | filter n/
+| Type of car park | ct/ | CAR_PARK_TYPE | surface, multistorey, basement, mechanised, covered | filter ct/ covered
+| Car park has available parking slot | a/ | - | - | filter a/
+| Car park has short-term parking | s/ | - | - | filter s/
+| Type of parking system | ps/ | PARKING_SYSTEM_TYPE | coupon, electronic | filter ps/ coupon
 |===
 
 Take note that `FindCommand` must be used to find a list of carparks within the location first.
@@ -511,16 +511,18 @@ the [underline]#<<Features-History, history>># to view what commands you have ty
 
 Calculates the cost of parking at a selected car park between a specified time period.
 
-[width="95%"]
-[cols="2,1,3"]
+[[calculateformat]]
+[cols="^.^3,^.^1,^.^4", width="95%", options="header"]
 |===
-|Format| Abbreviation | Example(s)
-|`calculate CARPARK_NAME DAY START_TIME END_TIME`| `ca`,`cal`,`calc`,`calcu` +
- `calcul`,`calcula`,`calculat` | `calculate TJ39 SUN 3.30AM 6.30PM` +
-`ca TJ39 SUN 3.30AM 6.30PM`
+| Format | Abbreviation | Example(s)
+| calculate CARPARK_NAME DAY START_TIME END_TIME | ca, cal, calc, calcu +
+calcul, calcula, calculat | calculate TJ39 sun 3.30am 6.30pm +
+ca TJ39 sun 3.30am 6.30pm
 |===
 
-`CalculateCommand` takes into account the free parking times of car parks. It also checks if a car park has short-term parking.
+
+`CalculateCommand` takes into account the free parking times of car parks.
+It returns an error message if the car park has no short-term parking.
 //[NOTE]
 //====
 //`CalculateCommand` takes into account the free parking times of car parks. It also checks if a car park has short-term parking.
@@ -781,7 +783,23 @@ any other commands first.
 
 === Abbreviation: abbrev.
 
-_Talk about abbrev here_
+If you find the command words too long to type. Guess what? We have executable short form
+for each command in our command list.
+
+You can find abbreviations of each command in the table that we provide to each section from 3.1 to 3.19.
+
+[NOTE]
+However, there are ambiguous abbreviations that are not distinguishable between multiple commands.
+Thus, you *CANNOT* use them: `c`, `f`, `fi`, `h`.
+
+To see how useful it can be, please take a look at the examples below.
+
+==== Example: Calculate Command
+
+Step 1. Instead of entering `calculate` into the _Command Box_, you can enter `ca` instead.
+
+Step 2. complete the rest of the fields with `TJ39 SUN 7.00AM 9.00PM`, followed by pressing kbd:[Enter] to execute.
+
 
 === Autocomplete: kbd:[Tab]
 
@@ -791,7 +809,7 @@ _Command Box_ and pressing the kbd:[Tab] key, it will display the full format of
 [NOTE]
 ====
 Only available for the following commands: +
-[underline]#Features-Select, `select`>># | [underline]#<<Features-Find, `find`>># | [underline]#<<Features-Filter, `filter`>># |
+[underline]#<<Features-Select, `select`>># | [underline]#<<Features-Find, `find`>># | [underline]#<<Features-Filter, `filter`>># |
 [underline]#<<Features-Notify, `notify`>># | [underline]#<<Features-Calculate, `calculate`>>#
 ====
 
@@ -799,15 +817,20 @@ To see how useful it can be, please take a look at the examples below.
 
 ==== Example: Select Command
 
-Step 1. Enter `s` into the _Command Box_, followed by pressing the kbd:[Tab] key.
+Step 1. Enter `s` into the _Command Box_, followed by pressing kbd:[Tab].
+Your `select` command will be completed.
 
-Step 2. ???
+Step 2. Substitute the selected field `INDEX` with `1`, followed by pressing kbd:[Enter] to execute.
 
 ==== Example: Filter Command
 
-Step 1. ???
+Step 1. Enter `fil` into the _Command Box_, followed by pressing kbd:[Tab].
+Your `filter` command will be completed.
 
-Step 2. ???
+Step 2. Substitute the selected field `DAY` with `SUN`, followed by pressing kbd:[Tab] to move to the next field.
+
+Step 3. Repeat step 2 until you substitute all the fields with actual value. (You can remove those fields you
+choose not to use). Then press kbd:[Enter] to execute.
 
 [[Features-Exit]]
 === Exiting the application : `exit`

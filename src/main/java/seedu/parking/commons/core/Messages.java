@@ -35,11 +35,16 @@ public class Messages {
     public static final String MESSAGE_INVALID_CARPARK_NAME = "The car park number input is invalid.";
     public static final String MESSAGE_ERROR_PARSING_CARPARK_INFO = "Error occurred while parsing car park information";
     public static final String MESSAGE_NO_SHORT_TERM_PARKING = "This car park has no short term parking.";
-    public static final String MESSAGE_INVALID_START_OR_END_TIME = "Start and end of parking time must be between the s"
-            + "tipulated timing.";
+    public static final String MESSAGE_INVALID_START_OR_END_TIME = "Start and end of parking time must be between the "
+            + "stipulated car park operation time.";
     public static final String MESSAGE_COST_OF_PARKING = "Cost of parking is $%1$.2f.";
 
     // auto-complete
     public static final String MESSAGE_INVALID_COMMAND_FOR_AUTOCOMPLETE =
-        "Auto completion failed with this command word.";
+        "Auto completion failed. Invalid command for auto-complete feature.";
+    public static final String MESSAGE_ALREADY_FULL_COMMAND_FORMAT =
+        "Your command is already in full command format.";
+    public static final String MESSAGE_AUTO_COMPLETE_SUCCESS = "Your command is auto-completed.";
+    public static final String MESSAGE_SELECT_NEXT_HOLDER_SUCCESS =
+        "Next parameter holder is selected for you to replace.";
 }

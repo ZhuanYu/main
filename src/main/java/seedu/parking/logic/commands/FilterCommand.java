@@ -26,12 +26,12 @@ import seedu.parking.model.carpark.CarparkFilteringPredicate;
  */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
-    public static final String FORMAT = "filter f/ DAY STARTBY ENDBYTI ct/ CARP_TYPE ps/ SY_TYPE a/ n/ st/";
+    public static final String FORMAT = "filter f/ DAY S_TIME E_TIME ct/ CP_TYPE ps/ S_TYPE a/ n/ st/";
     public static final String FREEPARKING_FIRST_ARG = "DAY";
-    public static final String FREEPARKING_SECOND_ARG = "STARTBY";
-    public static final String FREEPARKING_THIRD_ARG = "ENDBYTI";
-    public static final String CARPARKTYPE_ARG = "CARP_TYPE";
-    public static final String SYSTEMTYPE_ARG = "SY_TYPE";
+    public static final String FREEPARKING_SECOND_ARG = "S_TIME";
+    public static final String FREEPARKING_THIRD_ARG = "E_TIME";
+    public static final String CARPARKTYPE_ARG = "CP_TYPE";
+    public static final String SYSTEMTYPE_ARG = "S_TYPE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters the list of car parks returned by the previous find command with the use of flags.\n"

@@ -14,7 +14,7 @@ This is the portfolio of the project my team and I worked on for CS2103T
 Software Engineering module. Other than implementing various enhancement
 features, my main responsibilities include ensuring proper documentation
 and ensuring proper integration of command features implemented by different
-teammates. My teammates include Keith Fong, Yeo Zhuan Yu, Xiao Delong and Alvin Ng.
+teammates. My teammates include Keith Fong, Yeo Zhuan Yu and Xiao Delong.
 
 == Overview
 
@@ -29,7 +29,7 @@ all functions of the application can be used by simply typing!
 
 The `Find` command helps you find a list of car parks within a specific
 location. After which, you can use the `Filter` command
-to narrow down the list of car parks to just those that fit their needs,
+to narrow down the list of car parks to just those that fit your needs,
 e.g. you can use the `Filter` command to find a car park that
 has both night parking and short-term parking. With our `Query` and `Notify`
 feature, you can always received the most updated car park information!
@@ -67,7 +67,7 @@ filtering.
 *** Moreover, the command can work with varying number of flags, i.e.
 users can choose how many criteria they would like to filter by, and input them in any order.
 Each criteria may have different input parameters.
-*** If users were to forget what valid flags there are and which parameters are required
+*** If users were to forget what flags are available for use and which parameters are required
 for each flag, error messages would guide them to execute the commands correctly.
  +
 
@@ -80,7 +80,8 @@ other transport options e.g. taking public transport.
 
 * *Code contributed*:
 ** Filter command: [https://github.com/CS2103-AY1819S1-T09-4/main/pull/9[#9]][https://github.com/CS2103-AY1819S1-T09-4/main/pull/30[#30]][https://github.com/CS2103-AY1819S1-T09-4/main/pull/80[#80]][https://github.com/CS2103-AY1819S1-T09-4/main/pull/90[#90]]
-** Calculate command: [https://github.com/CS2103-AY1819S1-T09-4/main/pull/90[#90]]
+** Calculate command: [https://github.com/CS2103-AY1819S1-T09-4/main/pull/90[#90]][https://github.com/CS2103-AY1819S1-T09-4/main/pull/135[#135]]
+** Link to [https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=YurouTang[CS2103T Project Code Dashboard]]
 
 * *Other contributions*:
 
