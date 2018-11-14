@@ -1010,14 +1010,16 @@ each step.
 Step 1. The user launches the application for the first time. The `LogicManager`
 is initialized with an `CarparkFinderParser`.
 
-Step 2. The user executes `f` command instead of `find`. The `Matcher` object in
+Step 2. The user executes `c` command instead of `calculate`. The `Matcher` object in
 `CarparkFinderParser` splits the command text into _command word_ and
-_arguments_, in which the _command word_ is parsed using a _switch_
-statement.
+_arguments_, in which the _command word_ is checked. Because it is an ambiguous abbrevation
+(we do not know if it stands for `clear` or `calculate`), it is rejected by throwing a `ParseException`
 
-Step 3. This _command word_ will be matched to a `COMMAND_ABBREVIATION` from
-`ListCommand`, which holds the value of 'f'. As the program finds a match, it
-proceeds as if a `find` command is given.
+Step 2. The user now tries `s` command instead of `select`. The `Matcher` object in
+`CarparkFinderParser` again splits the command text into _command word_ and
+_arguments_, in which the _command word_ is checked. This time, it is checked that the input string
+is contained in one of the command words that is `calculate`. Therefore, it proceeds as if a
+`select` command is given.
 
 .Flow chart of command abbreviation usage.
 image::ActivityDiagram-abbreviation.png[width="880", align="left"]
@@ -1029,24 +1031,25 @@ command.
 
 ===== Aspect: How abbreviation executes
 
-* *Alternative 1 (current choice):* declare `COMMAND_ABBREVIATION` with a string value
+* *Alternative 1 (current choice):* use input string to check if it is contained in any
+command word string
++
+[cols="1,10"]
+|===
+|Pros| Extra logic needed
+|Cons| Very short command words that contains ambiguous abbreviation is marginalised in this case.
+For example, the shortest form of `find` is `fin`, which makes not much of a difference.
+|===
++
+
+* *Alternative 2:* (previous choice):* declare `COMMAND_ABBREVIATION` with a string value
 in each Command file.
 +
 [cols="1,10"]
 |===
 |Pros| Easy to implement
 |Cons| Have to decide on each abbreviation subjectively which brings down performance
-       if there are a lot of commands
-|===
-+
-
-* *Alternative 2:* declare `COMMAND_ABBREVIATION` using the first two characters of `COMMAND_WORD`
-in each Command file.
-+
-[cols="1,10"]
-|===
-|Pros| Better performance as abbreviations will be assigned systematically.
-|Cons| When there are 2 command words starting with same two characters e.g. `find` & `filter`, this does not work.
+if there are a lot of commands
 |===
 
 === Autocomplete
@@ -1068,11 +1071,13 @@ Step 1. The user launches the application for the first time.
 
 Step 2. The user enters `fi` in command box and then presses kbd:[Tab] . `autoComplete()`
 compares `input` through the list of applicable command words and abbreviations, and
-proceeds to `displayFormat()` because `fi` is an applicable `COMMAND_ABBREVIATION`. It
-moves on to highlight its first placeholder, `DAY`, in the command line. As seen
+proceeds to `displayFormat()` because `fi` is an ambiguous COMMAND, it fails with an exception.
+
+Step 3. User tries with `fil` again. It passes as part of the autocomplete command `filter`
+thus moves on to highlight its first placeholder, `DAY`, in the command line. As seen
 from the following diagrams.
 
-.After `fi` is entered.
+.After `fil` is entered.
 image::screenshot-fi.png[width="800", align="left"]
 
 .After kbd:[Tab] is pressed for the first time.
@@ -1109,7 +1114,7 @@ External library enables bindAutocompletion for TextField (the drop down list of
 |Cons| Text formatting is limited. All text in the TextField must have the same format.
 |===
 
-* *Alternative 2:* Create additional TextField as user request for additional fields
+* *Alternative 2:* Create additional TextField as user request on additional fields
 +
 [cols="1,10"]
 |===

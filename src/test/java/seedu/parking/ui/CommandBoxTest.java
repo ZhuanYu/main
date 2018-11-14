@@ -2,7 +2,6 @@ package seedu.parking.ui;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static seedu.parking.commons.core.Messages.MESSAGE_ALREADY_FULL_COMMAND_FORMAT;
 import static seedu.parking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR_AUTOCOMPLETE;
 import static seedu.parking.commons.core.Messages.MESSAGE_UNCERTAIN_CLEAR_OR_CALCULATE_COMMAND;
 import static seedu.parking.commons.core.Messages.MESSAGE_UNCERTAIN_FIND_OR_FILTER_COMMAND;
@@ -166,11 +165,6 @@ public class CommandBoxTest extends GuiUnitTest {
         assertAutoComplete_valid_commands(FilterCommand.COMMAND_WORD, FilterCommand.FORMAT);
         assertAutoComplete_valid_commands(CalculateCommand.COMMAND_WORD, CalculateCommand.FORMAT);
 
-        // valid commands already in complete format
-        //assertAutoComplete_already_complete(SelectCommand.COMMAND_WORD + " 1");
-        //assertAutoComplete_already_complete(FindCommand.COMMAND_WORD + " hougang");
-        //assertAutoComplete_already_complete(NotifyCommand.COMMAND_WORD + " 60");
-
         // valid commands that can select next parameter automatically
         assertAutoCompleteFilter_substitute_first();
         assertAutoCompleteFilter_substitute_fourth();
@@ -274,15 +268,6 @@ public class CommandBoxTest extends GuiUnitTest {
         commandBoxHandle.load(givenCommand);
         commandBox.autoComplete();
         assertEquals(commandBoxHandle.getInput(), expectedCommand);
-    }
-
-    /**
-     * Checks if a {@code givenCommand} in the {@code commandBox} is already a completed command.
-     */
-    private void assertAutoComplete_already_complete(String givenCommand) throws Exception {
-        commandBoxHandle.load(givenCommand);
-        commandBox.autoComplete();
-        assertEquals(resultDisplayHandle.getText(), MESSAGE_ALREADY_FULL_COMMAND_FORMAT);
     }
 
     /**

@@ -32,7 +32,7 @@ It allows you to work with a *Command Line Interface (CLI)* to display a list of
 If you *use the computer frequently* and *commute by driving*, you would find our application useful in helping you obtain various information about car parks.
 
 .Sample display of the application
-image::findbefore.png[width="880"]
+image::find_location.png[width="700"]
 
 == Summary of contributions
 
@@ -87,108 +87,127 @@ to write documentation for end-users to understand easily. We are targeting car
 owners, e.g. taxi drivers.
 
 
-=== Quick Start
-Here are several quick tips to get the application running.
+=== Abbreviation: abbrev.
 
-. Check that you have https://www.oracle.com/technetwork/java/javase/downloads/index.html[Java version 9] or later installed in your Computer.
-. Download the latest `carparkfinder.jar` https://github.com/CS2103-AY1819S1-T09-4/main/releases[here].
-. Copy the file to the folder you want to use as the home folder for Car Park Finder.
-. Double-click the file to start the application. The *Graphical User Interface (GUI)* should appear in a few seconds.
-+
-.Home page of GUI
-image:quickstart-GUI.png[width="880"]
-The figure above is a sample display of the application's GUI, which consists of
-5 regions.
+If you find the command words too long to type. Guess what? We have executable short form
+for each command in our command list.
 
-+
-. Type a command in the Command Box and then press kbd:[Enter] to execute it.
-A message will appear in the Message Box.
+You can find abbreviations of each command in the table that we provide to each section from 3.1 to 3.19.
 
-[TIP]
-Some example commands you can try: +
-<<Features-List,*`list`*>>: bring up a list of all the car parks +
-<<Features-Help,*`help`*>>: show the list of available commands and how to use them +
-<<Features-Exit,*`exit`*>>: exit the program
+[NOTE]
+However, there are ambiguous abbreviations that are not distinguishable between multiple commands.
+Thus, you *CANNOT* use them: `c`, `f`, `fi`, `h`.
 
-Congratulations, You have successfully executed your first command!
+To see how useful it can be, please take a look at the examples below.
 
-Refer to <<Features>> for more commands.
+==== Example: Calculate Command
 
-=== Auto complete the command line
+Step 1. Instead of entering `calculate` into the _Command Box_, you can enter `ca` instead.
 
-Display the full format of an executable command line. +
-Format: `COMMAND_WORD` followed by 'Tab' key.
-Function: press 'Tab' key again to move to the next parameter.
+Step 2. complete the rest of the fields with `TJ39 SUN 7.00AM 9.00PM`, followed by pressing Enter to execute.
 
-Example(s)
 
-* key in `fi` in command box and then press 'Tab' key.
+=== Autocomplete: Tab
 
-Only available in the following commands:
+If you forgotten how to type a command, do not worry! By typing in the first letter of the command in the
+_Command Box_ and pressing the Tab key, it will display the full format of the command.
 
-* <<Features-Find,*`find`*>>
-* <<Features-Select,*`select`*>>
-* <<Features-Filter,*`filter`*>>
-* <<Features-Sort,*`sort`*>>
+[NOTE]
+====
+Only available for the following commands: +
+[underline]#<<Features-Select, `select`>># | [underline]#<<Features-Find, `find`>># | [underline]#<<Features-Filter, `filter`>># |
+[underline]#<<Features-Notify, `notify`>># | [underline]#<<Features-Calculate, `calculate`>>#
+====
 
-=== Command Summary
-Here are the summarize list of commands available to the user.
+To see how useful it can be, please take a look at the examples below.
+
+==== Example: Select Command
+
+Step 1. Enter `s` into the _Command Box_, followed by pressing Tab.
+Your `select` command will be completed.
+
+Step 2. Substitute the selected field `INDEX` with `1`, followed by pressing Enter to execute.
+
+==== Example: Filter Command
+
+Step 1. Enter `fil` into the _Command Box_, followed by pressing Tab.
+Your `filter` command will be completed.
+
+Step 2. Substitute the selected field `DAY` with `SUN`, followed by pressing Tab to move to the next field.
+
+Step 3. Repeat step 2 until you substitute all the fields with actual value. (You can remove those fields you
+choose not to use). Then press Enter to execute.
+
+[appendix]
+== Command Summary
+This is the last section of the User Guide, but the most useful if you just want a list of commands to try.
+Refer to [underline]#<<generaltable>># for general commands and [underline]#<<managetable>># for car park management.
+For more details on what each command does, please refer to [underline]#<<Features>>#.
 
 .General Commands
-[cols="1,4,2"]
+[[generaltable]]
+[cols="^.^2,^.^2,^.^2", width=50%, options="header"]
 |===
 |Command |Format |Example
 
 |*Help*
-|`help`
-|`h`
+|help
+|he
+
+|*List*
+|list
+|l
+
+|*Undo*
+|undo
+|u
+
+|*Redo*
+|redo
+|r
 
 |*Clear*
-|`clear`
-|`c`
+|clear
+|cl
 
 |*History*
-|`history`
-|`hi`
-
-|*Query*
-|`query`
-|`q`
+|history
+|hi
 
 |*Exit*
-|`exit`
-|`e`
+|exit
+|e
 |===
 
-
-.Carpark Management
-[cols="1,4,2"]
+.Car Park Management
+[[managetable]]
+[cols="^.^1,^.^4,^.^2"]
 |===
 |Command |Format |Example
 
-|*List*
-|`list`
-|`l`
+|*Query*
+|query
+|q
 
 |*Select*
-|`select INDEX`
-|`s 2`
+|select INDEX
+|s 2
 
 |*Find*
-|`find KEYWORD [MORE_KEYWORDS]`
-|`f punggol`
+|find KEYWORD [MORE_KEYWORDS]
+|fin punggol
 
 |*Filter*
-|`filter [f/FREE_PARKING] [n/NIGHT_PARKING] [ct/CARPARK_TYPE]`
-|`fi f/true n/false ct/multi`
+|filter FLAG/ PARAMETER [MORE_FLAG/ PARAMETER]
+|fil f/ SUN 7.30AM 5.30PM ct/ SURFACE
 
-|*Sort*
-|`sort FILTER_TYPE`
-|`so DISTANCE`
+|*Calculate*
+|calculate DAY START_TIME END_TIME
+|cal SUN 3.30PM 6.30PM
 
 |*Notify*
-|`notify`
-|`n 60`
+|notify TIME_SECONDS
+|n 60
 |===
 
 == Contributions to the Developer Guide
@@ -252,28 +271,6 @@ For example, the `Logic` component (see the *_class diagram_* given below) defin
 .Class Diagram of the Logic Component
 image::LogicClassDiagram.png[width="800"]
 
-[[Architecture-design]]
-=== Events-driven nature of the design
-
-This section explains the main nature of design adopted by the system.
-
-The *_sequence diagram_* below shows how the components interact when the user issues the command `find sengkang`.
-
-.Component interactions for `find sengkang` command (part 1)
-image::Sequence diagram - Find Carpark.png[width="800"]
-
-[NOTE]
-Note how the `Model` simply raises a `CarparkFinderChangedEvent` when the Car Park Finder data are changed, instead of asking the `Storage` to save the updates to the hard disk.
-
-The *_sequence diagram_* below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
-
-.Component interactions for `find sengkang` command (part 2)
-image::Sequence diagram - Find Carpark Event Handling.png[width="800"]
-
-[NOTE]
-Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how the Event Driven approach helps us reduce direct coupling between components.
-
-The sections below give more details of each component.
 
 [[Design-Main]]
 === Main component
@@ -319,29 +316,7 @@ For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/Mai
 is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`].
 
 [[Design-Logic]]
-=== Logic component
 
-The `Logic` component consist of a `LogicManager` that takes care of the parse and exexcution of commands.
-It inherits the base class link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`].
-
-Please refer to the *_class diagram_* below for more details on how they are connected.
-
-[[fig-LogicClassDiagram]]
-.Structure of the Logic Component
-image::LogicClassDiagram.png[width="800"]
-
-In general, this is the workflow of the `Logic` component:
-
-.  Get the `CarparkFinderParser` class to parse the user command.
-.  Create a `Command` object which is executed by the `LogicManager`.
-.  Pass the result of the command execution over to `Model`, which can affect it (e.g. adding a person) and/or raise events.
-.  Return the command execution by encapsulating the command as a `CommandResult` object which then is passed back to the `UI`.
-
-The *_sequence diagram_* below shows the interactions within the `Logic` component
-when `execute("delete 1")` is called.
-
-.Sequence Diagram of of `execute("delete 1")
-image::DeletePersonSdForLogic.png[width="800"]
 
 [[Design-Model]]
 === Model component
@@ -401,7 +376,7 @@ The `Storage` component can perform the following functions:
 * save `UserPref` objects in json format and read it back.
 * save the Car Park Finder data in xml format and read it back.
 
-=== Abbreviation Feature
+=== Abbreviation
 
 The abbreviation feature reduces the amount of characters needed to type.
 
@@ -418,17 +393,19 @@ each step.
 Step 1. The user launches the application for the first time. The `LogicManager`
 is initialized with an `CarparkFinderParser`.
 
-Step 2. The user executes `f` command instead of `find`. The `Matcher` object in
+Step 2. The user executes `c` command instead of `calculate`. The `Matcher` object in
 `CarparkFinderParser` splits the command text into _command word_ and
-_arguments_, in which the _command word_ is parsed using a _switch_
-statement.
+_arguments_, in which the _command word_ is checked. Because it is an ambiguous abbrevation
+(we do not know if it stands for `clear` or `calculate`), it is rejected by throwing a `ParseException`
 
-Step 3. This _command word_ will be matched to a `COMMAND_ABBREVIATION` from
-`ListCommand`, which holds the value of 'f'. As the program finds a match, it
-proceeds as if a `find` command is given.
+Step 2. The user now tries `s` command instead of `select`. The `Matcher` object in
+`CarparkFinderParser` again splits the command text into _command word_ and
+_arguments_, in which the _command word_ is checked. This time, it is checked that the input string
+is contained in one of the command words that is `calculate`. Therefore, it proceeds as if a
+`select` command is given.
 
 .Flow chart of command abbreviation usage.
-image::ActivityDiagram-abbreviation.png[width="700", align="left"]
+image::ActivityDiagram-abbreviation.png[width="880", align="left"]
 
 The _Activity Diagram_ above explains what happens when a user executes a `f`
 command.
@@ -437,70 +414,73 @@ command.
 
 ===== Aspect: How abbreviation executes
 
-* *Alternative 1 (current choice):* declare `COMMAND_ABBREVIATION` with a string value
+* *Alternative 1 (current choice):* use input string to check if it is contained in any
+command word string
++
+[cols="1,10"]
+|===
+|Pros| Extra logic needed
+|Cons| Very short command words that contains ambiguous abbreviation is marginalised in this case.
+For example, the shortest form of `find` is `fin`, which makes not much of a difference.
+|===
++
+
+* *Alternative 2:* (previous choice):* declare `COMMAND_ABBREVIATION` with a string value
 in each Command file.
 +
 [cols="1,10"]
 |===
 |Pros| Easy to implement
 |Cons| Have to decide on each abbreviation subjectively which brings down performance
-       if there are a lot of commands
-|===
-+
-
-* *Alternative 2:* declare `COMMAND_ABBREVIATION` using the first two characters of `COMMAND_WORD`
-in each Command file.
-+
-[cols="1,10"]
-|===
-|Pros| Better performance as abbreviations will be assigned systematically.
-|Cons| When there are 2 command words starting with same two characters e.g. `find` & `filter`, this does not work.
+if there are a lot of commands
 |===
 
-=== Auto-complete Feature
+=== Autocomplete
 
-The auto-complete feature simplifies overcomplicated commands by prompting correct format.
+The autocomplete feature simplifies overcomplicated commands by prompting correct format.
 
 ==== Overview
 
-The auto-complete mechanism is facilitated by `CommandBox`. It calls `autocomplete()`
+The autocomplete mechanism is facilitated by `CommandBox`. It calls `autocomplete()`
 to `displayFormat()` if applicable command word is entered or to highlight the next
 parameter if full format is already provided in the command box.
 
 ==== Example
 
-Given below is an example usage scenario and how the auto-complete mechanism behaves at
+Given below is an example usage scenario and how the autocomplete mechanism behaves at
 each step.
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user enters `fi` in command box and then presses kbd:[Tab] . `autoComplete()`
+Step 2. The user enters `fi` in command box and then presses Tab . `autoComplete()`
 compares `input` through the list of applicable command words and abbreviations, and
-proceeds to `displayFormat()` because `fi` is an applicable `COMMAND_ABBREVIATION`. It
-moves on to highlight its first placeholder, `DAY`, in the command line. As seen
+proceeds to `displayFormat()` because `fi` is an ambiguous COMMAND, it fails with an exception.
+
+Step 3. User tries with `fil` again. It passes as part of the autocomplete command `filter`
+thus moves on to highlight its first placeholder, `DAY`, in the command line. As seen
 from the following diagrams.
 
-.After `fi` is entered.
-image::screenshot-fi.png[width="700", align="left"]
+.After `fil` is entered.
+image::screenshot-fi.png[width="800", align="left"]
 
-.After kbd:[Tab] is pressed for the first time.
-image::screenshot-fiFirstArgSelected.png[width="700", align="left"]
+.After Tab is pressed for the first time.
+image::screenshot-fiFirstArgSelected.png[width="800", align="left"]
 
 Step 3. The user replaces `DAY` with an actual value, `SUN`, and presses 'Tab'
 key again. `autoComplete()` is called again, but because this time it checks that `input`
 `isFilterCommandFormat`, the next placeholder, `START_TIME`, is highlighted. Result
 is shown in the following diagram.
 
-.After kbd:[Tab] is pressed for the second time.
-image::screenshot-fiSecondArgSelected.png[width="700", align="left"]
+.After Tab is pressed for the second time.
+image::screenshot-fiSecondArgSelected.png[width="800", align="left"]
 
 Step 4. The user continues step 3 until all placeholders are filled up with actual
-values and then presses kbd:[Enter]  to execute this command.
+values and then presses Enter to execute this command.
 
 .Activity Diagram for Auto Completion Mechanism.
-image::ActivityDiagram-autocompletion.png[width="700", align="left"]
+image::ActivityDiagram-autocompletion.png[width="880", align="left"]
 
-The _Activity Diagram_ above explains what happens when user presses kbd:[Tab].
+The _Activity Diagram_ above explains what happens when user presses Tab.
 
 ==== Design Considerations
 
@@ -517,7 +497,7 @@ External library enables bindAutocompletion for TextField (the drop down list of
 |Cons| Text formatting is limited. All text in the TextField must have the same format.
 |===
 
-* *Alternative 2:* Create additional TextField as user request for additional fields
+* *Alternative 2:* Create additional TextField as user request on additional fields
 +
 [cols="1,10"]
 |===
@@ -527,9 +507,3 @@ External library enables bindAutocompletion for TextField (the drop down list of
 line text input, which have consequences such as the user cannot backspace or
 select through the entire line.
 |===
-
-== PROJECT: PowerPointLabs
-
----
-
-_{Optionally, you may include other projects in your portfolio.}_
