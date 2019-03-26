@@ -80,6 +80,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateCarpark(Carpark target, Carpark editedCarpark) {
+        requireAllNonNull(target, editedCarpark);
+
+        versionedCarparkFinder.updateCarpark(target, editedCarpark);
+        indicateCarparkFinderChanged();
+    }
+
+    @Override
     public void loadCarpark(List<Carpark> listCarkpark) {
         versionedCarparkFinder.setCarparks(listCarkpark);
         updateFilteredCarparkList(PREDICATE_SHOW_ALL_CARPARK);

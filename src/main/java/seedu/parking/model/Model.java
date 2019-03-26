@@ -38,6 +38,12 @@ public interface Model {
     void addCarpark(Carpark carpark);
 
     /**
+     * Replaces the given car park {@code target} with {@code editedCarpark}.
+     * {@code target} must exist in the car park finder.
+     */
+    void updateCarpark(Carpark target, Carpark editedCarpark);
+
+    /**
      * Updates with a list of car parks {@code listCarpark}.
      */
     void loadCarpark(List<Carpark> listCarpark);

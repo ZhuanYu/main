@@ -15,7 +15,7 @@ public class Messages {
     public static final String MESSAGE_UNCERTAIN_CLEAR_OR_CALCULATE_COMMAND =
         "Ambiguous command. You can try 'cl' (clear) or 'ca' (calculate)";
 
-    public static final String MESSAGE_INVALID_CARPARK_DISPLAYED_INDEX = "The car park index provided is invalid";
+    public static final String MESSAGE_INVALID_CARPARK_DISPLAYED_INDEX = "The selected index is out of range";
     public static final String MESSAGE_CARPARKS_LISTED_OVERVIEW = "%1$d car park(s) found!";
 
     // filter command

@@ -16,7 +16,6 @@ import seedu.parking.commons.core.LogsCenter;
 import seedu.parking.commons.events.ui.CarparkPanelSelectionChangedEvent;
 import seedu.parking.commons.events.ui.JumpToListRequestEvent;
 import seedu.parking.commons.events.ui.NoSelectionRequestEvent;
-import seedu.parking.commons.events.ui.NotifyCarparkRequestEvent;
 import seedu.parking.commons.events.ui.TimeIntervalChangeEvent;
 import seedu.parking.model.carpark.Carpark;
 
@@ -75,13 +74,6 @@ public class CarparkListPanel extends UiPart<Region> {
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         scrollTo(event.targetIndex);
-    }
-
-    @Subscribe
-    private void handleNotifyCarparkRequestEvent(NotifyCarparkRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        carparkListView.setItems(carparkListView.getItems());
-        carparkListView.setCellFactory(listView -> new CarparkListViewCell());
     }
 
     @Subscribe

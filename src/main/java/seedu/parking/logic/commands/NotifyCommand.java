@@ -37,13 +37,16 @@ public class NotifyCommand extends Command {
     public static final String MESSAGE_NO_CHANGE = "Car park %1$s has %2$s lot(s) available"
             + "\nInterval: every %3$d seconds";
     public static final String MESSAGE_ERROR = "Cannot notify without selecting a car park first";
-    public static final String MESSAGE_ERROR_CARPARK = "Unable to retrieve car park information from data.gov.sg\n"
-            + "Please check your internet connection and try again";
-    public static final String MESSAGE_ERROR_NODATA = "Unable to retrieve car park information from data.gov.sg\n"
-            + "Unfortunately, the data is not available. We apologise for any inconvenience caused";
+    public static final String MESSAGE_ERROR_CARPARK = "Unable to retrieve car park information from data.gov.sg"
+            + "\nPlease check your internet connection and try again"
+            + "\nDisabling notification...";
+    public static final String MESSAGE_ERROR_NODATA = "Unable to retrieve car park information from data.gov.sg"
+            + "\nUnfortunately, the data is not available. We apologise for any inconvenience caused"
+            + "\nDisabling notification...";
     public static final String MESSAGE_ERROR_OFF = "Notification already disabled";
     public static final String MESSAGE_OFF = "Notification disabled";
-
+    public static final String MESSAGE_INVALID_NOTIFY_INDEX = "Unable to notify due to selected index out of range"
+            + "\nDisabling notification...";
 
     private final int targetTime;
 

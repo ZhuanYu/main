@@ -49,7 +49,6 @@ public class UniqueCarparkList implements Iterable<Carpark> {
     /**
      * Replaces the car park {@code target} in the list with {@code editedCarpark}.
      * {@code target} must exist in the list.
-     * The car park identity of {@code editedCarpark} must not be the same as another existing car park in the list.
      */
     public void setCarpark(Carpark target, Carpark editedCarpark) {
         requireAllNonNull(target, editedCarpark);
@@ -57,10 +56,6 @@ public class UniqueCarparkList implements Iterable<Carpark> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new CarparkNotFoundException();
-        }
-
-        if (!target.isSameCarpark(editedCarpark) && contains(editedCarpark)) {
-            throw new DuplicateCarparkException();
         }
 
         internalList.set(index, editedCarpark);
